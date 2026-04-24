@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://sol-e.herokuapp.com',
+  apiUrl: 'https://sol-e.onrender.com',
 };
