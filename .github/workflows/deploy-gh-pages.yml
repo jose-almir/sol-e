@@ -1,0 +1,42 @@
+name: Deploy Angular App to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main # Triggers on push to main branch
+  workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
+
+permissions:
+  contents: write # Needed to push to the gh-pages branch
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '16' # Angular 13 is best supported on Node 14-16
+          cache: 'npm'
+          cache-dependency-path: 'frontend/app/web/package-lock.json'
+
+      - name: Install Dependencies
+        working-directory: frontend/app/web
+        run: npm install
+
+      - name: Build Application
+        working-directory: frontend/app/web
+        # This will use the "build:prod" script which already sets the correct --base-href
+        run: npm run build:prod
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./frontend/app/web/dist/sole-client
+          publish_branch: gh-pages
+          force_orphan: true
