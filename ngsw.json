@@ -1,0 +1,99 @@
+{
+  "configVersion": 1,
+  "timestamp": 1777064296265,
+  "index": "/sol-e/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/sol-e/favicon.ico",
+        "/sol-e/index.html",
+        "/sol-e/main.bcee113aad662d11.js",
+        "/sol-e/manifest.webmanifest",
+        "/sol-e/polyfills.5ae6f9408530c013.js",
+        "/sol-e/runtime.12d76d823e21567e.js",
+        "/sol-e/styles.8b17f288f7d82766.css"
+      ],
+      "patterns": [
+        "https:\\/\\/cdn\\.jsdelivr\\.net\\/npm\\/bootstrap-icons@1\\.8\\.1\\/font\\/bootstrap-icons\\.css"
+      ]
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/sol-e/assets/icons/icon-128x128.png",
+        "/sol-e/assets/icons/icon-144x144.png",
+        "/sol-e/assets/icons/icon-152x152.png",
+        "/sol-e/assets/icons/icon-192x192.png",
+        "/sol-e/assets/icons/icon-384x384.png",
+        "/sol-e/assets/icons/icon-512x512.png",
+        "/sol-e/assets/icons/icon-72x72.png",
+        "/sol-e/assets/icons/icon-96x96.png"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [
+    {
+      "name": "extraction",
+      "patterns": [
+        "https:\\/\\/sol-e\\.onrender\\.com\\/api\\/.*",
+        "https:\\/\\/localhost:3000\\/api\\/.*"
+      ],
+      "strategy": "performance",
+      "maxSize": 15,
+      "maxAge": 21600000,
+      "timeoutMs": 30000,
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "version": 1
+    }
+  ],
+  "hashTable": {
+    "/sol-e/assets/icons/icon-128x128.png": "dae3b6ed49bdaf4327b92531d4b5b4a5d30c7532",
+    "/sol-e/assets/icons/icon-144x144.png": "b0bd89982e08f9bd2b642928f5391915b74799a7",
+    "/sol-e/assets/icons/icon-152x152.png": "7479a9477815dfd9668d60f8b3b2fba709b91310",
+    "/sol-e/assets/icons/icon-192x192.png": "1abd80d431a237a853ce38147d8c63752f10933b",
+    "/sol-e/assets/icons/icon-384x384.png": "329749cd6393768d3131ed6304c136b1ca05f2fd",
+    "/sol-e/assets/icons/icon-512x512.png": "559d9c4318b45a1f2b10596bbb4c960fe521dbcc",
+    "/sol-e/assets/icons/icon-72x72.png": "c457e56089a36952cd67156f9996bc4ce54a5ed9",
+    "/sol-e/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
+    "/sol-e/favicon.ico": "cfcd71d654b2f705a1d958dc985b53e441ac4af4",
+    "/sol-e/index.html": "19217e1b9cfffb2210fd74cd9a824cc1bb45d2e5",
+    "/sol-e/main.bcee113aad662d11.js": "07a778b794a1d77f08a1a57d7be0b965e10229d3",
+    "/sol-e/manifest.webmanifest": "968a96fb0feabc1c38459a4b0444e2b0b9f225bf",
+    "/sol-e/polyfills.5ae6f9408530c013.js": "0426512e43fce9e57059c27941fb9dd3526612df",
+    "/sol-e/runtime.12d76d823e21567e.js": "c5e01c7e9738b98c7eaaee6427ee783a7ce42a51",
+    "/sol-e/styles.8b17f288f7d82766.css": "a4a94f5bfbd9931cb7abf3bb10ca41bdaecf9e0f"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ],
+  "navigationRequestStrategy": "performance"
+}
