@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jose-almir/SOLe.git"
+    "url": "git+https://github.com/jose-almir/sol-e.git"
   },
   "author": "jose-almir",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jose-almir/SOLe/issues"
+    "url": "https://github.com/jose-almir/sol-e/issues"
   },
-  "homepage": "https://github.com/jose-almir/SOLe#readme",
+  "homepage": "https://github.com/jose-almir/sol-e#readme",
   "dependencies": {
     "axios": "^0.26.1",
     "compression": "^1.7.4",
