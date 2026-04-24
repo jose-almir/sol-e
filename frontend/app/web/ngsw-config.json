@@ -34,7 +34,7 @@
     {
       "name": "extraction",
       "urls": [
-        "https://sol-e.herokuapp.com/api/**",
+        "https://sol-e.onrender.com/api/**",
         "https://localhost:3000/api/**"
       ],
       "cacheConfig": {
