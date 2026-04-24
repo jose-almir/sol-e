@@ -39,6 +39,9 @@ export class AppComponent {
     langs: [false, false, false],
   };
 
+  fromDate: string = '';
+  toDate: string = '';
+
   export() {
     saveAs(
       new Blob([this.refs], { type: 'text/text' }),
@@ -48,6 +51,28 @@ export class AppComponent {
   }
 
   onSubmit() {
+    if (this.fromDate) {
+      const [year, month, day] = this.fromDate.split('-');
+      this.query.fromYear = year;
+      this.query.fromMonth = month;
+      this.query.fromDay = day;
+    } else {
+      this.query.fromYear = '';
+      this.query.fromMonth = '';
+      this.query.fromDay = '';
+    }
+
+    if (this.toDate) {
+      const [year, month, day] = this.toDate.split('-');
+      this.query.toYear = year;
+      this.query.toMonth = month;
+      this.query.toDay = day;
+    } else {
+      this.query.toYear = '';
+      this.query.toMonth = '';
+      this.query.toDay = '';
+    }
+
     const query = this.utilsService.prepareQuery(this.query);
     this.setLoading();
 

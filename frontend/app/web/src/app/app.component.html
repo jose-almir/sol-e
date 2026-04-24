@@ -24,106 +24,24 @@
         <small>O tempo de extração depende da biblioteca digital da SBC</small>
       </div>
       <div class="mb-3">
-        <div class="row">
-          <div class="col-md">
+        <div class="row mb-3">
+          <div class="col-md-6">
             <strong>Início</strong>
-            <div class="row">
-              <div class="col-auto">
-                <select
-                  name="fromMonth"
-                  class="form-select bg-dark text-light mb-1"
-                  [(ngModel)]="query.fromMonth"
-                >
-                  <option label="" value="" selected="selected"></option>
-                  <option label="janeiro" value="01">janeiro</option>
-                  <option label="fevereiro" value="02">fevereiro</option>
-                  <option label="março" value="03">março</option>
-                  <option label="abril" value="04">abril</option>
-                  <option label="maio" value="05">maio</option>
-                  <option label="junho" value="06">junho</option>
-                  <option label="julho" value="07">julho</option>
-                  <option label="agosto" value="08">agosto</option>
-                  <option label="setembro" value="09">setembro</option>
-                  <option label="outubro" value="10">outubro</option>
-                  <option label="novembro" value="11">novembro</option>
-                  <option label="dezembro" value="12">dezembro</option>
-                </select>
-              </div>
-              <div class="col-auto">
-                <select
-                  name="fromDay"
-                  class="form-select bg-dark text-light mb-1"
-                  [(ngModel)]="query.fromDay"
-                >
-                  <option label="" value="" selected="selected"></option>
-                  <option *ngFor="let day of days" [value]="day">
-                    {{ day }}
-                  </option>
-                </select>
-              </div>
-              <div class="col-auto">
-                <select
-                  name="fromYear"
-                  class="form-select bg-dark text-light mb-1"
-                  [(ngModel)]="query.fromYear"
-                >
-                  <option label="" value="" selected="selected"></option>
-                  <option *ngFor="let year of years" [value]="year">
-                    {{ year }}
-                  </option>
-                </select>
-              </div>
-            </div>
+            <input
+              type="date"
+              class="form-control bg-dark text-light mt-1"
+              name="fromDate"
+              [(ngModel)]="fromDate"
+            />
           </div>
-          <div class="col">
+          <div class="col-md-6 mt-3 mt-md-0">
             <strong>Fim</strong>
-            <div class="row">
-              <div class="col-auto">
-                <select
-                  name="toMonth"
-                  class="form-select bg-dark text-light mb-1"
-                  [(ngModel)]="query.toMonth"
-                >
-                  <option label="" value="" selected="selected"></option>
-                  <option label="janeiro" value="01">janeiro</option>
-                  <option label="fevereiro" value="02">fevereiro</option>
-                  <option label="março" value="03">março</option>
-                  <option label="abril" value="04">abril</option>
-                  <option label="maio" value="05">maio</option>
-                  <option label="junho" value="06">junho</option>
-                  <option label="julho" value="07">julho</option>
-                  <option label="agosto" value="08">agosto</option>
-                  <option label="setembro" value="09">setembro</option>
-                  <option label="outubro" value="10">outubro</option>
-                  <option label="novembro" value="11">novembro</option>
-                  <option label="dezembro" value="12">dezembro</option>
-                </select>
-              </div>
-              <div class="col-auto">
-                <select
-                  name="toDay"
-                  class="form-select bg-dark text-light mb-1"
-                  [(ngModel)]="query.toDay"
-                >
-                  <option label="" value="" selected="selected"></option>
-                  <option *ngFor="let day of days" [value]="day">
-                    {{ day }}
-                  </option>
-                </select>
-              </div>
-              <div class="col-auto">
-                <select
-                  name="toYear"
-                  class="form-select bg-dark text-light mb-1"
-                  [(ngModel)]="query.toYear"
-                >
-                  <option label="" value="" selected="selected"></option>
-                  <option *ngFor="let year of years" [value]="year">
-                    {{ year }}
-                  </option>
-                </select>
-              </div>
-            </div>
+            <input
+              type="date"
+              class="form-control bg-dark text-light mt-1"
+              name="toDate"
+              [(ngModel)]="toDate"
+            />
           </div>
         </div>
       </div>
@@ -183,11 +101,13 @@
   <hr />
   <section id="extract-section" class="mt-3">
     <div [class.d-none]="!hasResults">
-      <label for="refs" class="d-flex justify-content-between">
+      <label class="d-flex justify-content-between mb-2">
         <strong>Resultados ({{ total }} extraídos)</strong>
-        <div>
+      </label>
+      <div class="position-relative">
+        <div class="position-absolute top-0 end-0 p-2 z-index-1">
           <button
-            class="btn btn-warning btn-sm ms-1"
+            class="btn btn-warning btn-sm me-1 shadow-sm"
             ngbTooltip="Copiar"
             ngxClipboard
             [cbContent]="refs"
@@ -195,21 +115,21 @@
             <i class="bi bi-clipboard-fill"></i>
           </button>
           <button
-            class="btn btn-warning btn-sm ms-1"
+            class="btn btn-warning btn-sm shadow-sm"
             ngbTooltip="Exportar"
             (click)="export()"
           >
             <i class="bi bi-download"></i>
           </button>
         </div>
-      </label>
-      <textarea
-        id="refs"
-        class="form-control mt-1 bg-dark text-light"
-        rows="10"
-        readonly
-        >{{ refs }}</textarea
-      >
+        <textarea
+          id="refs"
+          class="form-control"
+          rows="12"
+          readonly
+          style="font-family: SFMono-Regular, Menlo, Monaco, Consolas, monospace; background-color: #1e1e1e; color: #d4d4d4; border: 1px solid #333;"
+        >{{ refs }}</textarea>
+      </div>
     </div>
     <div>
       <div class="text-center" [class.d-none]="!isLoading">
@@ -221,8 +141,9 @@
         </div>
         <p>{{ progressText }}</p>
       </div>
-      <div [class.d-none]="!isEmpty">
-        <p class="text-center">Nenhum artigo encontrado.</p>
+      <div [class.d-none]="!isEmpty" class="text-center py-4">
+        <i class="bi bi-journal-x fs-1 text-secondary mb-2 d-block"></i>
+        <p class="text-muted">Nenhum artigo encontrado.</p>
       </div>
     </div>
     <div [class.d-none]="!hasError">
