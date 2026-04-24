@@ -1,8 +1,8 @@
 <main class="p-3">
   <section>
     <h3>
-      <i class="bi bi-sun-fill text-warning me-1"></i>
-      <a class="link-warning" href="https://sol.sbc.org.br/busca/"
+      <i class="bi bi-sun text-warning me-2"></i>
+      <a class="link-warning text-decoration-none" href="https://sol.sbc.org.br/busca/"
         >SBC Open Lib</a
       >
       Extractor
@@ -167,15 +167,16 @@
       <button
         [disabled]="!queryForm.valid || isLoading"
         id="extract-button"
-        class="btn btn-warning btn-log mt-3"
+        class="btn btn-warning btn-log mt-3 d-flex align-items-center"
       >
         <span
-          class="spinner-grow spinner-grow-sm"
+          class="spinner-border spinner-border-sm me-2"
           [class.d-none]="!isLoading"
           role="status"
           aria-hidden="true"
         ></span>
-        {{ isLoading ? "Extraindo" : "Extrair" }}
+        <i class="bi bi-sun me-2" [class.d-none]="isLoading"></i>
+        {{ isLoading ? "Extraindo..." : "Extrair referências" }}
       </button>
     </form>
   </section>
