@@ -102,7 +102,8 @@
   <section id="extract-section" class="mt-3">
     <div [class.d-none]="!hasResults">
       <label class="d-flex justify-content-between mb-2">
-        <strong>Resultados ({{ total }} extraídos)</strong>
+        <strong *ngIf="extractionStatus === 'extracting'">Resultados ({{ extractedCount }} de {{ total }} esperados)</strong>
+        <strong *ngIf="extractionStatus !== 'extracting'">Resultados ({{ extractedCount }} extraídos)</strong>
       </label>
       <div class="position-relative">
         <div class="position-absolute top-0 end-0 p-2 z-index-1">
@@ -131,15 +132,41 @@
         >{{ refs }}</textarea>
       </div>
     </div>
+    
+    <div [class.d-none]="extractionStatus !== 'confirm'" class="my-4">
+      <div class="alert alert-secondary border-secondary bg-dark text-light shadow-sm">
+        <p class="mb-2"><i class="bi bi-info-circle text-warning me-2"></i>Encontramos <strong>{{ pendingStatus?.total }}</strong> artigos espalhados em <strong>{{ pendingStatus?.links?.length }}</strong> páginas.</p>
+        <p class="mb-0">Deseja iniciar a extração agora?</p>
+        <div class="mt-4">
+          <button class="btn btn-warning me-2 d-flex align-items-center d-inline-flex" (click)="startExtraction()">
+            <i class="bi bi-play-fill me-1"></i> Iniciar extração
+          </button>
+          <button class="btn btn-outline-secondary d-flex align-items-center d-inline-flex" (click)="cancelSearch()">
+            <i class="bi bi-x-circle me-1"></i> Cancelar
+          </button>
+        </div>
+      </div>
+    </div>
+
     <div>
-      <div class="text-center" [class.d-none]="!isLoading">
-        <div class="progress">
+      <div class="text-center my-4" [class.d-none]="!isLoading">
+        <div class="spinner-grow text-warning" role="status" *ngIf="extractionStatus === 'searching'">
+          <span class="visually-hidden">Processando...</span>
+        </div>
+        <div class="progress mb-2" *ngIf="extractionStatus === 'extracting'">
           <div
             class="progress-bar bg-warning progress-bar-striped progress-bar-animated"
             [ngStyle]="{ width: percentage }"
           ></div>
         </div>
-        <p>{{ progressText }}</p>
+        <p class="mt-2">{{ progressText }}</p>
+        <button 
+          *ngIf="extractionStatus === 'extracting'" 
+          class="btn btn-sm btn-outline-danger mt-2" 
+          (click)="cancelExtraction()"
+        >
+          <i class="bi bi-stop-circle me-1"></i> Parar extração
+        </button>
       </div>
       <div [class.d-none]="!isEmpty" class="text-center py-4">
         <i class="bi bi-journal-x fs-1 text-secondary mb-2 d-block"></i>
